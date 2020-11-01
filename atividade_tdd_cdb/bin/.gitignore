@@ -1,3 +1,4 @@
-/tests/
-/tst/
 /app/
+/tst/
+
+.DS_STORE
