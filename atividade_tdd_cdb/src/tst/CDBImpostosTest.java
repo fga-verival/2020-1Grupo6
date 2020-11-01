@@ -27,4 +27,15 @@ import app.CDBImpostos;
 		
 		assertEquals(3.14, cdbImpostos.calcularImpostos(), 0.05);
  	}
+ 	
+	@Test
+ 	public void testCalcularImpostoDeRenda1() {
+ 		cdb.cadastrarValorInicial(500f);
+		cdb.cadastrarTaxaJuros(8.0);
+		cdb.cadastrarQtdDias(120);
+		
+		CDBImpostos cdbImpostos = new CDBImpostos();
+		
+		assertEquals(2.96, cdbImpostos.calcularImpostos(), 0.05);
+ 	}
  }
