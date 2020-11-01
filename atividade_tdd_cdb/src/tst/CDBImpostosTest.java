@@ -81,4 +81,31 @@ import app.CDBImpostos;
 		
 		assertEquals(147.58, cdbImpostos.calcularImpostos(), 0.05);
  	}
+
+	@Test
+ 	public void testCalcularImpostoDeRend5() {
+		// No caso de uma aplicacao complexa, seria interessante criar classes de Mocks. Isso ajudaria a remover duplicidade e numeros magicos para cenarios de teste
+		CDB cdb1 = new CDB();
+		cdb1.cadastrarValorInicial(1000f);
+		cdb1.cadastrarTaxaJuros(8.5);
+		cdb1.cadastrarQtdDias(60);
+		
+		CDB cdb2 = new CDB();
+		cdb2.cadastrarValorInicial(500f);
+		cdb2.cadastrarTaxaJuros(8.0);
+		cdb2.cadastrarQtdDias(120);
+		
+		double rendimentoBruto1 = cdb1.getRendimentoBruto();
+		double rendimentoBruto2 = cdb2.getRendimentoBruto();
+		
+		CDBImpostos cdbImpostos1 = new CDBImpostos();
+		cdbImpostos1.cadastrarRendimentoBruto(cdb1.getRendimentoBruto());
+		cdbImpostos1.cadastrarQtdDias(60);
+		
+		CDBImpostos cdbImpostos2 = new CDBImpostos();
+		cdbImpostos2.cadastrarRendimentoBruto(cdb2.getRendimentoBruto());
+		cdbImpostos2.cadastrarQtdDias(120);
+
+		assertEquals(6.1, cdbImpostos1.calcularImpostos() + cdbImpostos2.calcularImpostos(), 0.05);
+ 	}
  }
