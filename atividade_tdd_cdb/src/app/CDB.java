@@ -1,6 +1,7 @@
 package app;
 
 public class CDB {
+	private static int QTD_DIAS_ANO = 365;
 	
 	private float valorInicial;
 	private double taxaJuros;
@@ -19,6 +20,8 @@ public class CDB {
 	}
 	
 	public double getRendimentoBruto() {
-		return 13.97; // Falsificação
+		double qtdDiasProporcional = qtdDias/ (double) QTD_DIAS_ANO;
+		double valor = valorInicial * (taxaJuros/100) * qtdDiasProporcional;
+	    return Double.valueOf(String.format("%1.2f", valor));
 	}
 }
