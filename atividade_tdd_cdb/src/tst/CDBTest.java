@@ -50,6 +50,11 @@ public class CDBTest {
 	
 	@Test
 	public void testCalcularRendimentoLiquidoEmPorcentual() {
-		fail("Not implemented yet");
+		CDB cdb = new CDB();
+		cdb.cadastrarValorInicial(1000f);
+		cdb.cadastrarTaxaJuros(8.5);
+		cdb.cadastrarQtdDias(60);
+		
+		assertEquals(1.0829, cdb.getRendimentoLiquidoEmPercentual(), 0.05);
 	}
 }
