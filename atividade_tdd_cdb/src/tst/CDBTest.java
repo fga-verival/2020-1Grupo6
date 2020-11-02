@@ -57,4 +57,14 @@ public class CDBTest {
 		
 		assertEquals(1.0829, cdb.getRendimentoLiquidoEmPercentual(), 0.05);
 	}
+	
+	@Test
+	public void testCalcularRendimentoLiquidoEmPorcentual1() {
+		CDB cdb = new CDB();
+		cdb.cadastrarValorInicial(500f);
+		cdb.cadastrarTaxaJuros(8.0);
+		cdb.cadastrarQtdDias(120);
+		
+		assertEquals(2.0384, cdb.getRendimentoLiquidoEmPercentual(), 0.05);
+	}
 }
