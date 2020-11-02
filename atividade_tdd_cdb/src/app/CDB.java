@@ -1,11 +1,16 @@
 package app;
 
 public class CDB {
+	
+	
 	private static int QTD_DIAS_ANO = 365;
 	
 	private float valorInicial;
 	private double taxaJuros;
 	private int qtdDias;
+	
+	
+	// Setters
 
 	public void cadastrarValorInicial(float valorInicial) {
 		this.valorInicial = valorInicial;
@@ -19,13 +24,25 @@ public class CDB {
 		this.qtdDias = dias;	
 	}
 	
+	// Getters 
+	
+	public int getQtdDias() {
+		return qtdDias;
+	}
+		
+	// Calcular Rendimentos
+	
 	public double getRendimentoBruto() {
 		double qtdDiasProporcional = qtdDias/ (double) QTD_DIAS_ANO;
 		double valor = valorInicial * (taxaJuros/100) * qtdDiasProporcional;
-	  return Double.valueOf(String.format("%1.2f", valor));
+		
+		return valor;
 	}
 	
 	public double getRendimentoLiquidoEmPercentual() {
-		return 1.0829; // Falsificação
+		CDBImpostos impostos = new CDBImpostos();
+		impostos.cadastrarCDB(this);
+		
+		return (this.getRendimentoBruto() - impostos.calcularImpostos()) * 100 / this.valorInicial;
 	}
 }
