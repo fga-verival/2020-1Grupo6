@@ -47,4 +47,9 @@ public class CDBTest {
 		
 		assertEquals(27.12, rendimentoBruto1 + rendimentoBruto2, 0.05);
 	}
+	
+	@Test
+	public void testCalcularRendimentoLiquidoEmPorcentual() {
+		fail("Not implemented yet");
+	}
 }
