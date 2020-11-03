@@ -25,4 +25,3 @@ O trabalho foi desenvolvido por meio da IDE do Eclipse, utilizando a suite de te
 ### Observações
 
 * Como foi um cenário relativamente simples não houve a necessidade da criação de mocks, stubs, drivers ou spy's. Tem até um comentário no código que apresenta isso em um caso de teste.
-
