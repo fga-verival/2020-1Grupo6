@@ -1,94 +1,86 @@
-const axios = require('axios');
-
-const url = 'https://jsonplaceholder.typicode.com';
+import axios from 'axios';
  
-// Get HTTP Success
+const getResponseData = async (url) => {
+    return new Promise((resolve, reject) => {
+        axios.get(url)
+            .then(({ status, data, config }) => {
 
-const getResponseData = async (postNumber) => {
-    const res = await axios.get(`${url}/posts/${postNumber}`);
-    return res.data;
+                if (status == 200) {
+                    resolve({status, data, config});
+                } else {
+                    reject({status});
+                }
+            })
+            .catch(({response}) => {
+                reject(response);
+            })
+    });
 }
 
-const putResponseData = async (body) => {
-    const res = await axios.put(`${url}/posts/1`, body);
-    return res.data;
+const postResponseData = async (url, body) => {
+    return new Promise((resolve, reject) => {
+        axios.post(url, body)
+            .then(({status, data, config}) => {
+                if (status == 201) {
+                    resolve({status, data, config});
+                } else {
+                    reject({status});
+                }
+            }).catch(({response}) => {
+                reject(response);
+            });
+    });
 }
 
-const postResponseData = async (body) => {
-    const res = await axios.post(`${url}/posts`, body);
-    return res.data;
+const putResponseData = async (url, body) => {
+    return new Promise((resolve, reject) => {
+        axios.put(url, body)
+            .then(({status, data, config}) => {
+                if (status == 200) {
+                    resolve({status, data, config});
+                } else {
+                    reject({status});
+                }
+            }).catch(({response}) => {
+                reject(response);
+            });
+    });
 }
 
-const patchResponseData = async (body) => {
-    const res = await axios.patch(`${url}/posts/1`, body);
-    return res.data;
+const patchResponseData = async (url, body) => {
+    return new Promise((resolve, reject) => {
+        axios.patch(url, body)
+            .then(({status, data, config}) => {
+                if (status == 200) {
+                    resolve({status, data, config});
+                } else {
+                    reject({status});
+                }
+            }).catch(({response}) => {
+                reject(response);
+            });
+    });
 }
 
-const deleteResponseData = async (postNumber) => {
-    const res = await axios.delete(`${url}/posts/${postNumber}`);
-    console.log(res.data);
-    return res.data;
+const deleteResponseData = async (url) => {
+    return new Promise((resolve, reject) => {
+        axios.delete(url)
+            .then(({status, data}) => {
+                if (status == 200) {
+                    resolve({status, data});
+                } else {
+                    reject({status});
+                }
+            }).catch(({response}) => {
+                reject(response);
+            });
+    });
 }
 
-// Get HTTP Failure
-
-const getResponseDataFailure = async () => {
-    const res = await axios.get(`${url}/posts/101`);
-    return res.data;
-}
-
-const putResponseDataFailure = async () => {
-    const res = await axios.put(`${url}/posts/101`, body);
-    return res.data;
-}
-
-const postResponseDataFailure = async () => {
-    const res = await axios.post(`${url}/posts/101`);
-    return res.data;
-}
-
-const patchResponseDataFailure = async () => {
-    const res = await axios.patch(`${url}/posts/101`, body);
-    return res.data;
-}
-
-const deleteResponseDataFailure = async () => {
-    const res = await axios.delete(`${url}/posts/101`, body);
-    return res.data;
-}
-
-// Get HTTP content
-
-const getStatusCode = async () => {
-    const res = await axios.get('https://jsonplaceholder.typicode.com/users');
-    return res.status;
-}
-
-const getHTTPMethod = async () => {
-    const res = await axios.get('https://jsonplaceholder.typicode.com/users');
-    return res.config.method;
-}
-
-const getHeaders = async () => {
-    const res = await axios.get('https://jsonplaceholder.typicode.com/users');
-    return res.config.headers;
-}
-
-const getResponseUrl = async () => {
-    const res = await axios.get('https://jsonplaceholder.typicode.com/users');
-    return res.config.url;
-}
-
-deleteResponseData(1);
-
-module.exports = {
-    getStatusCode,
-    getHTTPMethod,
-    getHeaders,
-    getResponseUrl,
+export {
     getResponseData,
     putResponseData,
     patchResponseData,
     postResponseData,
     deleteResponseData
-}
+};

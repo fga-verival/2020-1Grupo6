@@ -1,5 +1,6 @@
-const axios = require('axios');
- 
+import axios from 'axios';
+
+
 axios.get('https://api.github.com/users/miguelpimentel')
   .then(function (response) {
     // handle success

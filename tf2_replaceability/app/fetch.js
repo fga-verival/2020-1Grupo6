@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 const getUsers = async () => {
 
@@ -6,14 +6,11 @@ const getUsers = async () => {
     const res = await fetch('https://jsonplaceholder.typicode.com/users');
     const user = await res.json();
 
-    console.log(user);
-
     return res.status;
 }
 
 getUsers();
 
-
-module.exports ={
+export default {
     getUsers
 }
